@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+
+
+<!--<script type="text/javascript" src="https://cdn.staticfile.org/sockjs-client/1.6.1/sockjs.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>-->
+<script type="text/javascript" src="js/sockjs.min.js"></script>
+<script type="text/javascript" src="js/stomp.umd.min.js"></script>
+<script>
+    // 获取当前的连接是http还是https
+    const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+    const url = protocol + window.location.host + '/chat';
+    const client = new StompJs.Client({
+        brokerURL: url,
+        debug: function (str) {
+            console.log(str);
+        },
+    });
+    // 如果浏览器里没有内置WebSocket
+    if (typeof WebSocket !== 'function') {
+        // webSocketFactory优先级比brokerURL高，可实现链接切换的效果
+        client.webSocketFactory = function () {
+            // 使用SockJS
+            return new SockJS('/chat');
+        };
+    }
+    // 连接成功后该干嘛
+    client.onConnect = function () {
+        // 持续监听服务端的消息，收到消息后执行回调函数
+        client.subscribe('/topic/chat', function (message) {
+            console.log(message.body);
+        });
+    };
+    // 连接失败该干嘛
+    client.onStompError = function (frame) {
+        console.log('错误报头: ' + frame.headers);
+        console.log('其他信息: ' + frame.body);
+    };
+    // 启动连接,非主动断开会自动重连
+    client.activate();
+    // 封装发送消息的函数,区分Msg和Message,Msg是Message.body中的一个属性
+    function sendMsg(msg) {
+        client.publish({
+            destination: '/app/chat',
+            body: JSON.stringify({"msg": msg})
+        });
+    }
+</script>
+</body>
+</html>
