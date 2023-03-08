@@ -30,6 +30,7 @@ public class WebSocketController {
     public Message send(SimpMessageHeaderAccessor headerAccessor, Message message) {
         String name = (String) headerAccessor.getSessionAttributes().get("userName");
         message.setFrom(name);
+        message.setNowTime();
         return message;
     }
 }

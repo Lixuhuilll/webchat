@@ -17,8 +17,8 @@ public class AuthHttpSessionHandshakeInterceptor extends HttpSessionHandshakeInt
         super.beforeHandshake(request, response, wsHandler, attributes);
         // 如果用户未登录，阻止握手
         if (attributes.get("userName") == null) {
-            if (response instanceof ServletServerHttpResponse serverResponse) {
-                serverResponse.getServletResponse().sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            if (response instanceof ServletServerHttpResponse serverHttpResponse) {
+                serverHttpResponse.getServletResponse().sendError(HttpServletResponse.SC_UNAUTHORIZED);
             }
             return false;
         }

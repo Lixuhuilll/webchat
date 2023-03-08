@@ -1,0 +1,99 @@
+body {
+    background-color: #F5F5F5;
+}
+
+.container {
+    margin: 50px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333333;
+}
+
+#chat-window {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    height: 300px;
+    overflow-y: scroll;
+}
+
+/* 新增发送者和接收者两种不同的消息样式 */
+#chat-window .message.sent {
+    /* 靠右边显示，且至少预留 1/4 的空间*/
+    text-align: right;
+    margin-left: 35%;
+}
+
+#chat-window .message.received {
+    /* 靠左边显示，且至少预留 1/4 的空间*/
+    text-align: left;
+    margin-right: 35%;
+}
+
+#chat-window .message.sent p {
+    background-color: #E0FFFF;
+}
+
+#chat-window .message.received p {
+    background-color: #F5F5F5;
+}
+
+#chat-window .message span {
+    color: #888888;
+    font-size: 12px;
+    margin: 5px;
+}
+
+#chat-window .message.sent span.from {
+    color: #66CCCC;
+}
+
+#chat-window .message.received span.from {
+    color: black;
+}
+
+#chat-window p {
+    /*允许自动换行*/
+    word-break: break-all;
+    /*允许强制换行*/
+    word-wrap: break-word;
+    margin: 5px;
+    padding: 5px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#message-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#message-form input[type=text] {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+#message-form button.btn {
+    padding: 10px;
+    background-color: #333333;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}

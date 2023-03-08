@@ -21,9 +21,8 @@ registerForm.addEventListener("input", () => {
     else if (confirmPasswordValue != null && confirmPasswordValue !== "" && confirmPasswordValue !== passwordValue) {
         submitButton.disabled = true;
         passwordNoFit.innerText = "密码不一致";
-    }
-    else {
-        if(isValidPassword) {
+    } else {
+        if (isValidPassword) {
             submitButton.disabled = false;
         }
         passwordError.innerText = "";
