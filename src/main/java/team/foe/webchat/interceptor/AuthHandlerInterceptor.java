@@ -11,7 +11,7 @@ public class AuthHandlerInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response
             , Object handler) throws Exception {
         Object userName = request.getSession().getAttribute("userName");
-        if(userName != null) return true;
+        if (userName != null) return true;
         // 返回 401
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         return false;

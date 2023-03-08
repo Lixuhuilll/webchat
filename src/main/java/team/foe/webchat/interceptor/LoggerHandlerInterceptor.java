@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class LoggerHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if(null == request.getSession().getAttribute("userName")) {
+        if (null == request.getSession().getAttribute("userName")) {
             // 未登录，放行到登录页面
             return true;
         }

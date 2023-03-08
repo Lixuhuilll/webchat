@@ -12,7 +12,8 @@ public class ErrorController {
     public String htmlLogged() {
         return "/error/logged.html";
     }
-    @RequestMapping ("/logged")
+
+    @RequestMapping("/logged")
     @ResponseBody
     public Message restLogged() {
         Message message = new Message();

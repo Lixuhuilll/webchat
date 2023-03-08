@@ -12,11 +12,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     HandlerInterceptor authHandlerInterceptor;
     @Resource
     HandlerInterceptor loggerHandlerInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authHandlerInterceptor)
-                .addPathPatterns("/**/chat*","/logged");
+                .addPathPatterns("/**/chat*", "/logged");
         registry.addInterceptor(loggerHandlerInterceptor)
-                .addPathPatterns("/**/login*","/signup.html");
+                .addPathPatterns("/**/login*", "/signup.html");
     }
 }

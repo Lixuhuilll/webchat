@@ -21,6 +21,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     /**
      * 客户端可通过该方法中配置的Url与服务器建立STOMP连接
+     *
      * @param stompConfig STOMP配置
      */
     @Override
@@ -39,11 +40,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     /**
      * 配置已建立STOMP连接的客户端如何与服务器交互
+     *
      * @param msgConfig Message配置
      */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry msgConfig) {
-        long[] HEART_BEAT = new long[]{ 15000L, 15000L };
+        long[] HEART_BEAT = new long[]{15000L, 15000L};
         // 配置客户端接收服务端消息的地址的前缀信息 以及 配置Ping-Pong
         msgConfig.enableSimpleBroker("/topic")
                 .setTaskScheduler(new DefaultManagedTaskScheduler())

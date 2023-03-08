@@ -21,12 +21,13 @@ public class WebSocketController {
     /**
      * 可以接收客户端通过“/app/chat”发送过来的消息 <br>
      * 客户端需要在"/topic/chat"上监听并接收服务端发回的消息
+     *
      * @param message 消息体
      * @return message 消息体 将收到的消息广播给所有正在监听的用户
      */
     @MessageMapping("/chat")
     @SendTo("/topic/chat")
-    public Message send(SimpMessageHeaderAccessor headerAccessor, Message message){
+    public Message send(SimpMessageHeaderAccessor headerAccessor, Message message) {
         String name = (String) headerAccessor.getSessionAttributes().get("userName");
         message.setFrom(name);
         return message;
