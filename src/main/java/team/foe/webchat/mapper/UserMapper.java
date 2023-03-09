@@ -29,6 +29,6 @@ public interface UserMapper {
             "  `password` varchar(100) NOT NULL COMMENT '用户密码，BCrypt混淆',\n" +
             "  PRIMARY KEY (`id`),\n" +
             "  UNIQUE KEY `users_name_IDX` (`name`) USING BTREE\n" +
-            ") ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COMMENT='用户基础表';")
+            ") ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci  COMMENT='用户基础表';")
     void creatUsersTable();
 }
