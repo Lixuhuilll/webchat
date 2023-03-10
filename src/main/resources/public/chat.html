@@ -57,8 +57,14 @@
     let shouldScroll = true;
     // 监听消息框的滚动事件，如果用户手动滚动了消息框，则不再自动滚动
     chatWindow.addEventListener('scroll', function () {
+        /**
+         * scrollHeight（文档内容实际高度，包括超出视窗的溢出部分）、
+         * scrollTop（滚动条滚动距离）、
+         * clientHeight（窗口可视范围高度）。
+         */
         const {scrollTop, scrollHeight, clientHeight} = chatWindow;
-        shouldScroll = scrollHeight - scrollTop === clientHeight;
+        // 因为浮点数的问题，拉到底部时 scrollTop + clientHeight 不一定>= scrollHeight
+        shouldScroll = scrollTop + clientHeight >= (scrollHeight - 1);
     });
 
     // 持续监听服务端的消息，收到消息后执行回调函数
